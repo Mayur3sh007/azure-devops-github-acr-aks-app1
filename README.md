@@ -1,11 +1,11 @@
 ---
 title: Azure DevOps Build, Push Docker Image to ACR
-description: Create Azure Pipeline to Build and Push Docker Image to Azure Container Registry  
+description: Create Azure Pipeline to Build and Push Docker Image to Azure Container Registry
 ---
-
 # Azure DevOps - Build and Push Docker Image to Azure Container Registry
 
 ## Step-01: Introduction
+
 - Understand Azure DevOps Basics
 - Understand Azure Pipelines
 - Implement a pipeline to Build and Push Docker Image to Azure Container Registry
@@ -13,14 +13,18 @@ description: Create Azure Pipeline to Build and Push Docker Image to Azure Conta
 [![Image](https://stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png)
 
 ## Step-02: Create Github Project and Check-In Code
+
 ### Create Github Repo in Github
+
 - Name: azure-devops-github-acr-aks-app1
 - Description: Azure DevOps App1 Demo with AKS, Github and Azure Containter Registry
 - Repo Type: Public / Private (Your choice)
 - Click on **Create Repository**
 
 ### Create Local Git Repo and Check-In Code
+
 - Create Local folders
+
 ```
 # Create a folder for all Repos we are going to create 
 mkdir azure-devops-aks-demo-repos
@@ -30,7 +34,9 @@ cd azure-devops-aks-demo-repos
 mkdir azure-devops-github-acr-aks-app1
 cd azure-devops-github-acr-aks-app1
 ```
+
 - Copy all files from `Giti-Repository-files` folder to our new repo folder `azure-devops-github-acr-aks-app1`
+
 ```
 # Initialize Git Repo
 cd azure-devops-github-acr-aks-app1
@@ -52,11 +58,13 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
 ```
 
 ## Step-03: Review github checked-in files
+
 - kube-manifests
 - Dockerfile
 - index.html
 
 ## Step-04: Create Azure Container Registry ACR
+
 - Go to Services -> Container Registries
 - Click on **Add**
 - Subscription: StackSimplify-Paid-Subsciption
@@ -68,14 +76,15 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
 - Click on **Create**
 
 ## Step-05: Creat DevOps Organization
+
 - Go to
   - https://dev.azure.com/
   - Sign in to Azure DevOps
-- Our Organization will be automatically created and if you want to manually create organization you can create one. 
+- Our Organization will be automatically created and if you want to manually create organization you can create one.
 - Organization Name: aksdemo1
 
-
 ## Step-06 : Create DevOps Project
+
 - Project Name: azure-devops-github-acr-aks-app1
 - Project Description: AKS CICD Pipelines with Github and Azure Container Registry ACR
 - Visibility: Private
@@ -84,9 +93,10 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
   - Work Item Process: Basic
 
 ## Step-07: Create Basic Build Pipeline
+
 - Create Folder -> App1-Pipelines
 - Go to Pipelines -> Create New Pipeline
-- Where is your Code?: Github  
+- Where is your Code?: Github
 - Select Repository: azure-devops-github-acr-aks-app1
   - Provide Github Password
   - Click on **Approve and Install** for Repositories selected
@@ -104,14 +114,17 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
 - Click on **Save and Run**
 
 ## Step-08: Review Build Logs & Docker Image in ACR
+
 - Review Build logs
 - Review Image in ACR
 
 ## Step-09: Rename Pipeline Name
+
 - Click on Pipeline -> Rename/Move
 - Name: 01-Docker-Build-and-Push-to-ACR
 
 ## Step-10: Make changes to index.html and push changes to git repo - V2 Commit
+
 ```
 # Pull changes related to pipeline to local repo
 git pull
@@ -125,23 +138,28 @@ git add .
 git commit -am "V2 Commit for index.html"
 git push
 ```
-- Verify Build logs 
+
+- Verify Build logs
 - Verify ACR Image
 
 ## Step-12: Add Namespace for Docker Images stored in ACR
+
 - Go to Pipeline -> 01-Docker-Build-and-Push-to-ACR -> Edit
 - Update the below and Save
+
 ```yaml
 # Before
   imageRepository: 'app1nginx'
 
 # After
-  imageRepository: 'app1/app1nginx'  
+  imageRepository: 'app1/app1nginx'
 ```
-- Verify Build logs 
+
+- Verify Build logs
 - Verify ACR Image
 
 ## Step-13: Make changes to index.html and push changes to git repo - V3 Commit
+
 ```
 # Pull changes related to pipeline to local repo
 git pull
@@ -155,16 +173,20 @@ git add .
 git commit -am "V3 Commit for index.html"
 git push
 ```
-- Verify Build logs 
+
+- Verify Build logs
 - Verify ACR Image
 
 ## Step-14: Disable Pipeline
+
 - Go to Pipeline -> 01-Docker-Build-and-Push-to-ACR -> Settings -> Disable
 
 ## Step-15: Review Pipeline code
+
 - Click on Pipeline -> Edit Pipeline
 - Review pipeline code
 - Review Service Connections
+
 ```yaml
 # Docker
 # Build and push an image to Azure Container Registry
@@ -208,5 +230,5 @@ stages:
 ```
 
 ## References
+
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
- 
