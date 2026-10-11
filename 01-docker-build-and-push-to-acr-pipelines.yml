@@ -9,14 +9,15 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'fb6a069f-f58f-4a0e-bfc6-2e40fd8f1f29'
+  # Container registry service connection established during pipeline creation -> basically a link between AzDOs and ACR 
+  dockerRegistryServiceConnection: 'fb6a069f-f58f-4a0e-bfc6-2e40fd8f1f29' 
   imageRepository: 'app1/aksdevopsacr'
   containerRegistry: 'acrdevopsaks.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Git-Repository-files/Dockerfile'
   tag: '$(Build.BuildId)'
+  # Incrementally make a buildId for the tag 1,2,3.....
 
-  # Agent VM image name
+  # Agent VM image name -> download github repo, docker build the code and then docker push the code on this system
   vmImageName: 'ubuntu-latest'
 
 stages:
