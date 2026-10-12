@@ -5,7 +5,7 @@ trigger:
 
 # We can define variables
 variables:
-  tag: '${Build.BuildId}'
+  tag: '$(Build.BuildId)'
 
 stages:
   - stage: Build
